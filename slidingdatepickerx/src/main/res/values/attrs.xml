@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SlidingDatePicker">
+        <attr name="sdp_date_color_selected" format="color" />
+        <attr name="sdp_enable_highlight" format="boolean" />
+        <attr name="sdp_enable_default_date" format="boolean" />
+        <attr name="sdp_enable_chevrons" format="boolean" />
+        <attr name="sdp_date_item_spacing" format="dimension" />
+    </declare-styleable>
+</resources>

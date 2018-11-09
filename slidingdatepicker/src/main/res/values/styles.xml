@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="SDPMonth">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:alpha">0.8</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:letterSpacing">0.0125</item>
+    </style>
+
+    <style name="SDPWeekday">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:ems">3</item>
+        <item name="android:alpha">0.6</item>
+        <item name="android:textColor">@color/colorSDPText</item>
+        <item name="android:gravity">center</item>
+        <item name="android:letterSpacing">0.0125</item>
+    </style>
+
+    <style name="SDPDate">
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:ems">3</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:alpha">0.8</item>
+        <item name="android:textColor">@color/colorSDPText</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:letterSpacing">0.0125</item>
+    </style>
+</resources>
