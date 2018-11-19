@@ -32,6 +32,7 @@ public class SlidingDatePicker extends FrameLayout {
     // views
     private SnappyRecyclerView rv;
     private TextView tvMonth;
+    private TextView highlight;
     // other
     private Adapter mAdapter;
     private boolean mShowDefaultDate;
@@ -42,6 +43,8 @@ public class SlidingDatePicker extends FrameLayout {
     private String[] mMonthsArray = getResources().getStringArray(R.array.SDPMonthsArray);
     private String[] mWeekdaysArray = getResources().getStringArray(R.array.SDPWeekdaysArray);
     private float mMaxAlpha = 1f;
+    private int spacing;
+    private int itemSize;
 
     public SlidingDatePicker(@NonNull Context context) {
         this(context, null);
@@ -87,9 +90,9 @@ public class SlidingDatePicker extends FrameLayout {
 
         mShowDefaultDate = typedArray.getBoolean(R.styleable.SlidingDatePicker_sdp_enable_default_date, true);
 
-        final TextView highlight = view.findViewById(R.id.highlight);
+        highlight = view.findViewById(R.id.highlight);
 
-        final int spacing = (int) typedArray.getDimension(R.styleable.SlidingDatePicker_sdp_date_item_spacing, 0);
+        spacing = (int) typedArray.getDimension(R.styleable.SlidingDatePicker_sdp_date_item_spacing, 0);
         final Drawable bgDateSelected = ContextCompat.getDrawable(getContext(), R.drawable.sdp_bg_date_selected);
         final Drawable bgDateDefault = ContextCompat.getDrawable(getContext(), R.drawable.sdp_bg_date_default);
         int colorDateSelected = typedArray.getColor(R.styleable.SlidingDatePicker_sdp_date_color_selected, ContextCompat.getColor(getContext(), android.R.color.white));
@@ -98,18 +101,33 @@ public class SlidingDatePicker extends FrameLayout {
         rv.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayout.HORIZONTAL, false));
         rv.enableSnapListener(SnappyRecyclerView.Behavior.NOTIFY_ON_IDLE_AND_NO_POSITION);
         rv.setAdapter(mAdapter);
+
+        if (typedArray.getBoolean(R.styleable.SlidingDatePicker_sdp_enable_highlight, true))
+            highlight.setBackground(bgDateSelected);
+        else highlight.setVisibility(INVISIBLE);
         highlight.post(new Runnable() {
             @Override
             public void run() {
-                rv.setCenteringPadding(
-                        highlight.getWidth(),
+                itemSize = highlight.getWidth();
+                rv.resetCenteringPadding(
+                        itemSize,
                         spacing,
-                        mCalendar.get(Calendar.DAY_OF_MONTH) - 1);
+                        mDefaultDay - 1);
                 setMonth(-1, NONE);
+            }
+        });
+    }
 
-                if (typedArray.getBoolean(R.styleable.SlidingDatePicker_sdp_enable_highlight, true))
-                    highlight.setBackground(bgDateSelected);
-                else highlight.setVisibility(GONE);
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (itemSize == 0) highlight.post(new Runnable() {
+            @Override
+            public void run() {
+                itemSize = highlight.getWidth();
+                rv.resetCenteringPadding(
+                        itemSize,
+                        spacing,
+                        mDefaultDay - 1);
             }
         });
     }
@@ -175,9 +193,10 @@ public class SlidingDatePicker extends FrameLayout {
      */
     public void backToDefaultDate() {
         int direction;
-        Calendar now = getCalendar();
-        int year = now.get(Calendar.YEAR);
-        int month = now.get(Calendar.MONTH);
+        int year = mCalendar.get(Calendar.YEAR);
+        int month = mCalendar.get(Calendar.MONTH);
+        mCalendar.set(Calendar.YEAR, mDefaultYear);
+        mCalendar.set(Calendar.MONTH, mDefaultMonth);
         if (year > mDefaultYear) direction = BACKWARD;
         else if (year < mDefaultYear) direction = FORWARD;
         else {
@@ -190,9 +209,10 @@ public class SlidingDatePicker extends FrameLayout {
 
     /**
      * smoothly goes back to current default date
-     *
      */
     public void backToDefaultDateForced() {
+        mCalendar.set(Calendar.YEAR, mDefaultYear);
+        mCalendar.set(Calendar.MONTH, mDefaultMonth);
         tvMonth.setText(mMonthsArray[mDefaultMonth] + " " + String.valueOf(mDefaultYear));
         rv.snapToPosition(mDefaultDay - 1);
     }
