@@ -207,7 +207,7 @@ public class SlidingDatePicker extends FrameLayout {
     }
 
     /**
-     * smoothly goes back to current default date
+     * instantly goes back to current default date
      */
     public void backToDefaultDateForced() {
         mCalendar.set(Calendar.YEAR, mDefaultYear);

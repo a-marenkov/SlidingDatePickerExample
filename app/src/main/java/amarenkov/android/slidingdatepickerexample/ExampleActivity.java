@@ -12,7 +12,6 @@ import java.util.Calendar;
 import amarenkov.androidx.slidingdatepicker.SlidingDatePicker;
 import androidx.appcompat.app.AppCompatActivity;
 
-
 public class ExampleActivity extends AppCompatActivity {
 
     private SlidingDatePicker sdp1;
@@ -61,7 +60,7 @@ public class ExampleActivity extends AppCompatActivity {
         sdp2.setCallback(new SlidingDatePicker.Callback() {
             @Override
             public void onDatePicked(Calendar calendar) {
-                if(isCallbackOn) {
+                if (isCallbackOn) {
                     String date = String.valueOf(calendar.get(Calendar.YEAR))
                             + "."
                             + String.valueOf(calendar.get(Calendar.MONTH) + 1)
