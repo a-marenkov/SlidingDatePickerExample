@@ -90,8 +90,16 @@ sdp1.restoreInstanceState(savedInstanceState);
   ```android:paddingStart``` & ```android:paddingLeft``` - set if you want to give extra margin to left chevron (by default chevron has margin of 8dp);
   
   ```android:paddingEnd``` & ```android:paddingRight``` - set if you want to give extra margin to right chevron (by default chevron has margin of 8dp).
+  
+`Note:` if you added left and right padding to SlidingDatePicker, you also need to add following LayoutParams to it:
+
+```
+android:clipToPadding="false"
+android:clipChildren="false"
+```
 
 `Note:` default date is the date that is set with method setCalendar(Long timeInMillis) or today's date if the method is never called.
+
 
 - You can change SlidingDatePicker's text appearances overriding following styles (note that SDPMonth's textColor will be used as chevrons color filter):
 
