@@ -242,6 +242,15 @@ public class SlidingDatePicker extends FrameLayout {
     }
 
     /**
+     * @return Calendar instance with default date
+     */
+    public Calendar getDefaultCalendar() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(mDefaultYear, mDefaultMonth, mDefaultDay);
+        return calendar;
+    }
+
+    /**
      * sets date picker's date
      *
      * @param time time in millis

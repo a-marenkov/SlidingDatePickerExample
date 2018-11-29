@@ -16,7 +16,7 @@ ext {
     siteUrl = 'https://github.com/a-marenkov/SlidingDatePickerExample'
     gitUrl = 'https://github.com/a-marenkov/SlidingDatePickerExample.git'
 
-    libraryVersion = '1.0.0-alpha1'
+    libraryVersion = '1.0.0-beta'
 
     developerId = 'a-marenkov'
     developerName = 'Alexander Marenkov'
@@ -56,7 +56,7 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation 'amarenkov.androidx:snappyrecyclerview:1.0.0-alpha'
+    implementation 'amarenkov.androidx:snappyrecyclerview:1.0.0-beta'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
