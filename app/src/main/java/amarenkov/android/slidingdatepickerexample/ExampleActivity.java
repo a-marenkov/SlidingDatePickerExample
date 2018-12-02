@@ -7,7 +7,9 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 import amarenkov.androidx.slidingdatepicker.SlidingDatePicker;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,16 +38,14 @@ public class ExampleActivity extends AppCompatActivity {
         }
 
         Button btn = findViewById(R.id.button);
+        final SimpleDateFormat sdf = new SimpleDateFormat("EEE dd.MM.yyyy", Locale.getDefault());
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar calendar = sdp1.getCalendar();
-                String date = String.valueOf(calendar.get(Calendar.YEAR))
-                        + "."
-                        + String.valueOf(calendar.get(Calendar.MONTH) + 1)
-                        + "."
-                        + String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
-                Toast.makeText(getApplicationContext(), date, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),
+                        sdf.format(sdp1.getCalendar().getTimeInMillis()),
+                        Toast.LENGTH_SHORT)
+                        .show();
             }
         });
 
@@ -61,12 +61,10 @@ public class ExampleActivity extends AppCompatActivity {
             @Override
             public void onDatePicked(Calendar calendar) {
                 if (isCallbackOn) {
-                    String date = String.valueOf(calendar.get(Calendar.YEAR))
-                            + "."
-                            + String.valueOf(calendar.get(Calendar.MONTH) + 1)
-                            + "."
-                            + String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
-                    Toast.makeText(getApplicationContext(), date, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),
+                            sdf.format(calendar.getTimeInMillis()),
+                            Toast.LENGTH_SHORT)
+                            .show();
                 }
             }
         });
