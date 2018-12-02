@@ -4,11 +4,11 @@
 
 add to your dependencies
 ```
-implementation 'amarenkov.android:slidingdatepicker:1.0.0-alpha1'
+implementation 'amarenkov.android:slidingdatepicker:1.0.0-beta'
 ```
 or
 ```
-implementation 'amarenkov.androidx:slidingdatepicker:1.0.0-alpha1'
+implementation 'amarenkov.androidx:slidingdatepicker:1.0.0-beta'
 ```
 
 ## 2. How to use
