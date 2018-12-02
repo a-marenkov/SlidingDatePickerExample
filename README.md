@@ -4,11 +4,11 @@
 
 add to your dependencies
 ```
-implementation 'amarenkov.android:slidingdatepicker:1.0.0-beta'
+implementation 'amarenkov.android:slidingdatepicker:1.0.0-beta1'
 ```
 or
 ```
-implementation 'amarenkov.androidx:slidingdatepicker:1.0.0-beta'
+implementation 'amarenkov.androidx:slidingdatepicker:1.0.0-beta1'
 ```
 
 ## 2. How to use
@@ -49,15 +49,14 @@ Calendar calendar = sdp1.getCalendar();
 - If you want to listen to selected dates changes use SlidingDatePicker's setCallback(SlidingDatePicker.Callback callback):
 
 ```java
+final SimpleDateFormat sdf = new SimpleDateFormat("EEE dd.MM.yyyy", Locale.getDefault());
 sdp1.setCallback(new SlidingDatePicker.Callback() {
     	@Override
     	public void onDatePicked(Calendar calendar) {
-        String date = String.valueOf(calendar.get(Calendar.YEAR))
-               + "."
-               + String.valueOf(calendar.get(Calendar.MONTH) + 1)
-               + "."
-               + String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
-        Toast.makeText(getApplicationContext(), date, Toast.LENGTH_SHORT).show();
+	Toast.makeText(getApplicationContext(),
+		sdf.format(calendar.getTimeInMillis()),
+                Toast.LENGTH_SHORT)
+                .show();
     	}
 });
 ```
