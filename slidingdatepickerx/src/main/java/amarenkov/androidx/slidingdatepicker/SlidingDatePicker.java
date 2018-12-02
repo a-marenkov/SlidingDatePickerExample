@@ -212,7 +212,7 @@ public class SlidingDatePicker extends FrameLayout {
     public void backToDefaultDateForced() {
         mCalendar.set(Calendar.YEAR, mDefaultYear);
         mCalendar.set(Calendar.MONTH, mDefaultMonth);
-        tvMonth.setText(mMonthsArray[mDefaultMonth] + " " + String.valueOf(mDefaultYear));
+        setMonth(-1, NONE);
         rv.snapToPosition(mDefaultDay - 1);
     }
 

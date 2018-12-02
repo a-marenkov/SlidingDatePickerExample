@@ -213,7 +213,7 @@ public class SlidingDatePicker extends FrameLayout {
     public void backToDefaultDateForced() {
         mCalendar.set(Calendar.YEAR, mDefaultYear);
         mCalendar.set(Calendar.MONTH, mDefaultMonth);
-        tvMonth.setText(mMonthsArray[mDefaultMonth] + " " + String.valueOf(mDefaultYear));
+        setMonth(-1, NONE);
         rv.snapToPosition(mDefaultDay - 1);
     }
 
@@ -242,15 +242,6 @@ public class SlidingDatePicker extends FrameLayout {
     }
 
     /**
-     * @return Calendar instance with default date
-     */
-    public Calendar getDefaultCalendar() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(mDefaultYear, mDefaultMonth, mDefaultDay);
-        return calendar;
-    }
-
-    /**
      * sets date picker's date
      *
      * @param time time in millis
@@ -261,6 +252,15 @@ public class SlidingDatePicker extends FrameLayout {
         mDefaultMonth = mCalendar.get(Calendar.MONTH);
         mDefaultDay = mCalendar.get(Calendar.DAY_OF_MONTH);
         if (rv.isPaddingApplied()) setMonth(mDefaultDay - 1, NONE);
+    }
+
+    /**
+     * @return Calendar instance with default date
+     */
+    public Calendar getDefaultCalendar() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(mDefaultYear, mDefaultMonth, mDefaultDay);
+        return calendar;
     }
 
     /**
